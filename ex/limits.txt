@@ -1,0 +1,3 @@
+Les limites du programme en parallèle sont la modification des variables présent dans une même list (la liste « force » dans notre cas.) avec des index commun a chaque thread, qui pour la version 2 en parallèle augmente le temps d'exécution par rapport à la version 1 en parallèle qui lui ne modifiait pas les mêmes valeurs dans chaque thread.
+
+Donc, pour les programmes séquentiels, la version 2 est plus optimisée, mais pour les programmes parallèles, la version 1 est plus adaptée.

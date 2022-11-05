@@ -1,0 +1,7 @@
+{
+    "nuxt.isNuxtApp": false,
+    "python.linting.flake8Args": [
+        "--max-line-length=12000",
+        "--ignore=E402,F841,F401,E302,E305",
+    ],
+}
