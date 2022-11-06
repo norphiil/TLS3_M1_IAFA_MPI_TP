@@ -145,12 +145,11 @@ size: int = comm.size
 
 
 saved_signature = []
-saved_time = []
 
 # here to start the code...
 data = init_world(nbbodies)
+start_time = time.time()
 for t in range(0, NBSTEPS):
-    start_time = time.time()
 
     force = [(0, 0) for _ in range(nbbodies)]
     for i in range(0, nbbodies):
@@ -164,8 +163,7 @@ for t in range(0, NBSTEPS):
         data[i] = update(data[i], force[i])
     displayPlot(data)
     saved_signature.append(signature(data))
-    end_time = time.time()
-    saved_time.append(end_time - start_time)
+end_time = time.time()
 
 print('saved_signature: ' + str(saved_signature))
-print('- saved_time: ' + str(saved_time))
+print('saved_time: ' + str(end_time - start_time) + ' Secondes')

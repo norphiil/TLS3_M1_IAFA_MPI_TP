@@ -194,10 +194,10 @@ split_nbbodies = comm.bcast(split_nbbodies, root=0)
 # here to start the code...
 
 saved_signature = []
-saved_time = []
+if rank == 0:
+    start_time = MPI.Wtime()
 
 for t in range(0, NBSTEPS):
-    start_time = MPI.Wtime()
     force = [(0, 0)
              for _ in range(nbbodies)]
     for i in range(split_nbbodies[rank], split_nbbodies[rank + 1]):
@@ -214,9 +214,8 @@ for t in range(0, NBSTEPS):
         displayPlot(data)
         saved_signature.append(signature(data))
     data = comm.bcast(data, root=0)
-    end_time = MPI.Wtime()
-    saved_time.append(end_time - start_time)
 
 if rank == 0:
+    end_time = MPI.Wtime()
     print('saved_signature: ' + str(saved_signature))
-print('Instance N° ' + str(rank) + ' - saved_time: ' + str(saved_time))
+    print('saved_time: ' + str(end_time - start_time) + ' Secondes')
